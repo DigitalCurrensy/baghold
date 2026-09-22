@@ -6,4 +6,4 @@ Two published bags: Mare Tranquillitatis pit (Wagner and Robinson 2022 JGR Plane
 
 A bag is a goal you enter. A rim keep is a box you do not. Lighting hours are FEASFRONT. Occupancy is DOSEPATH. A pin is PINFAULT.
 
-W0 freezes the catalog. W1 ports bag.py. MTP fails voids. MHP fails drop. TUBEWALK locked.
+W0 freezes the catalog. W1 ports bag.py. MTP fails voids. MHP fails drop. W2 walks MTP. TUBEWALK locked.

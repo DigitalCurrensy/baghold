@@ -2,5 +2,6 @@
 
 from .bag import hold
 from .bags import INGENII, LACUS_MORTIS, MHP, MTP
+from .walk import MTP_WALK, lunar_offset_m
 
-__all__ = ["INGENII", "LACUS_MORTIS", "MHP", "MTP", "hold"]
+__all__ = ["INGENII", "LACUS_MORTIS", "MHP", "MTP", "MTP_WALK", "hold", "lunar_offset_m"]

@@ -49,5 +49,19 @@ class HoldTests(unittest.TestCase):
         self.assertEqual(LACUS_MORTIS["lat"], 44.962)
 
 
+class WalkTests(unittest.TestCase):
+    def test_mtp_walk_is_voids_and_frames_are_named(self) -> None:
+        from baghold.walk import MTP_WALK, lunar_offset_m, score_mhp, score_published
+
+        self.assertEqual(score_published(), "voids")
+        self.assertEqual(score_mhp(), "drop")
+        self.assertEqual(MTP_WALK["id"], "BAG-MTP-TRANQ")
+        published = (MTP_WALK["lat"], MTP_WALK["lon"])
+        self.assertEqual(round(lunar_offset_m(published, MTP_WALK["haruyama"])), MTP_WALK["haruyama_m"])
+        self.assertEqual(round(lunar_offset_m(published, MTP_WALK["carrer"])), MTP_WALK["carrer_m"])
+        self.assertEqual(MTP_WALK["lola_gap_m"], 500)
+        self.assertFalse(MHP.get("this_walk", False))
+
+
 if __name__ == "__main__":
     unittest.main()

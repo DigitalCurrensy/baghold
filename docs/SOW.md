@@ -4,7 +4,7 @@ W0: two published bags (Mare Tranquillitatis pit, Marius Hills pit) vs declared 
 
 W1: hold scorer. `bag.py` ported. Pinch first. MTP fails voids. MHP fails drop.
 
-W2: one bad bag demonstration. Famous is not a hold. Pretty-print is not a pass.
+W2: one bad bag demonstration. Famous is not a hold. Pretty-print is not a pass. MTP walked.
 
 W3: hold letter. Paper on the bag. Fail still issues.
 
