@@ -1,4 +1,4 @@
-"""BAGHOLD kernel tests. Catalog freeze. Scorer idle."""
+"""BAGHOLD kernel tests. Counsel pass. MHP is not this letter."""
 
 from __future__ import annotations
 
@@ -12,6 +12,8 @@ if str(ROOT) not in sys.path:
 
 from baghold.bag import hold  # noqa: E402
 from baghold.bags import INGENII, LACUS_MORTIS, MHP, MTP  # noqa: E402
+from baghold.counsel import compile_counsel, void_edge  # noqa: E402
+from baghold.letter import MTP_WINDOW, VOID_FORMULA, compile_letter, void_fraction_of  # noqa: E402
 
 
 class HoldTests(unittest.TestCase):
@@ -61,6 +63,51 @@ class WalkTests(unittest.TestCase):
         self.assertEqual(round(lunar_offset_m(published, MTP_WALK["carrer"])), MTP_WALK["carrer_m"])
         self.assertEqual(MTP_WALK["lola_gap_m"], 500)
         self.assertFalse(MHP.get("this_walk", False))
+
+
+class LetterTests(unittest.TestCase):
+    def test_hold_letter_issues_voids_and_refuses_mhp(self) -> None:
+        walk = compile_letter("walk")
+        self.assertTrue(walk["issued"])
+        self.assertEqual(walk["stamp"], "voids")
+        self.assertEqual(walk["title"], "HOLD LETTER")
+        self.assertTrue(walk["not_a_certificate"])
+        self.assertTrue(walk["do_not_enter"])
+        self.assertLessEqual(walk["words"], 80)
+        mhp = compile_letter("mhp")
+        self.assertFalse(mhp["issued"])
+        self.assertEqual(mhp["why"], "not_this_letter")
+        self.assertEqual(mhp["bag_id"], MHP["id"])
+        self.assertEqual(void_fraction_of(40, 100), 0.40)
+        self.assertEqual(void_fraction_of(15, 100), 0.15)
+        self.assertIsNone(void_fraction_of(0, 0))
+        self.assertEqual(VOID_FORMULA, "n_invalid / n_cells")
+        self.assertEqual(MTP_WINDOW["n_invalid"], 40)
+
+
+class CounselTests(unittest.TestCase):
+    def test_compiled_unsigned(self) -> None:
+        paper = compile_counsel("compiled")
+        self.assertTrue(paper["issued"])
+        self.assertEqual(paper["stamp"], "unsigned")
+        self.assertFalse(paper["signed"])
+        self.assertEqual(paper["title"], "BAG HOLD COUNSEL PASS")
+        self.assertLessEqual(paper["words"], 80)
+
+    def test_refused_remaps(self) -> None:
+        mhp = compile_counsel("mhp-letter")
+        self.assertFalse(mhp["issued"])
+        self.assertEqual(mhp["why"], "mhp_is_not_this_letter")
+        tube = compile_counsel("tube-mouth")
+        self.assertEqual(tube["why"], "tube_is_not_this_mouth")
+        pretty = compile_counsel("pretty-hold")
+        self.assertEqual(pretty["why"], "pretty_is_not_a_hold")
+        unnamed = compile_counsel("unnamed-sign")
+        self.assertEqual(unnamed["why"], "unnamed_signature")
+        self.assertIsNone(void_edge(0, 0))
+        self.assertEqual(void_edge(15, 100), 0.15)
+        self.assertEqual(void_edge(16, 100), 0.16)
+        self.assertIsNone(void_edge(2.5, 100))
 
 
 if __name__ == "__main__":

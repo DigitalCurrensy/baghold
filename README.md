@@ -15,8 +15,10 @@ A lunar pit looks like a cave you can enter. Score the hold against mouth pinch,
 - W0 catalog: Mare Tranquillitatis pit (Wagner 2022) and Marius Hills pit (Haruyama 2009 / Wagner 2022). bag.py named, not run.
 - W1 hold scorer: bag.py ported. Pinch first. MTP fails voids. MHP fails drop.
 - W2 one bad bag: MTP walked. Pretty-print is not a hold. Haruyama 1276 m and Carrer 15 m named, not scored.
+- W3 hold letter: fail still issues. void = n_invalid / n_cells. MTP 40/100. MHP is not this letter.
+- W4 counsel pass: unsigned. Named seats are not wet ink. A tube is not this mouth. TUBEWALK locked.
 
-W3 hold letter waits. TUBEWALK locked.
+BAGHOLD W0–W4 frozen. Do not staff TUBEWALK.
 
 ## bag.py
 
