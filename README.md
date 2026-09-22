@@ -13,8 +13,9 @@ A lunar pit looks like a cave you can enter. Score the hold against mouth pinch,
 ## Wave freeze
 
 - W0 catalog: Mare Tranquillitatis pit (Wagner 2022) and Marius Hills pit (Haruyama 2009 / Wagner 2022). bag.py named, not run.
+- W1 hold scorer: bag.py ported. Pinch first. MTP fails voids. MHP fails drop.
 
-W1 hold scorer waits. TUBEWALK locked.
+W2 bad-bag walk waits. TUBEWALK locked.
 
 ## bag.py
 
