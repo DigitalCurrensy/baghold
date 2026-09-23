@@ -40,6 +40,18 @@ class HoldTests(unittest.TestCase):
         self.assertEqual(hold(30, 0.15, 30, 20), "ok")
         self.assertEqual(hold(88, 0.02, None, 5), "ok")
 
+    def test_missing_required_input_is_not_a_pass(self) -> None:
+        self.assertEqual(hold(None, 0.02, 10, 5), "missing")
+        self.assertEqual(hold(49, None, 10, 5), "missing")
+        self.assertEqual(hold(49, 0.02, 10, None), "missing")
+        self.assertNotEqual(hold(None, None, None, None), "ok")
+
+    def test_clear_pass(self) -> None:
+        self.assertEqual(hold(100, 0.0, 0, 0), "ok")
+
+    def test_clear_fail(self) -> None:
+        self.assertEqual(hold(50, 0.5, 10, 5), "voids")
+
     def test_named_catalog_is_not_a_fetched_survey(self) -> None:
         self.assertEqual(MTP["id"], "BAG-MTP-TRANQ")
         self.assertEqual(MTP["lat"], 8.336)
