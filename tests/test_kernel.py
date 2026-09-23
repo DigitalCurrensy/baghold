@@ -46,6 +46,14 @@ class HoldTests(unittest.TestCase):
         self.assertEqual(hold(49, 0.02, 10, None), "missing")
         self.assertNotEqual(hold(None, None, None, None), "ok")
 
+    def test_negative_or_out_of_range_measure_is_missing(self) -> None:
+        self.assertEqual(hold(-1, 0.02, 10, 5), "missing")
+        self.assertEqual(hold(49, 1.2, 10, 5), "missing")
+        self.assertEqual(hold(49, -0.01, 10, 5), "missing")
+        self.assertEqual(hold(49, 0.08, -1, 5), "missing")
+        self.assertEqual(hold(30, 0.15, 30, 20), "ok")
+        self.assertEqual(hold(88, 0.02, None, 5), "ok")
+
     def test_clear_pass(self) -> None:
         self.assertEqual(hold(100, 0.0, 0, 0), "ok")
 

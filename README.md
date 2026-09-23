@@ -15,13 +15,14 @@ A pit-mouth score from the numbers the caller supplies. Passing the mouth does n
 `hold` returns the first gate that trips, in this order:
 
 1. mouth, floor void fraction, or floor slope is missing → `missing`
-2. mouth is under 30 m → `pinch`
-3. floor void fraction is over 0.15 → `voids`
-4. a supplied drop is over 30 m → `drop`
-5. floor slope is over 20 degrees → `slope`
-6. otherwise → `ok`
+2. mouth is negative, floor slope is negative, a supplied drop is negative, or the floor void fraction is under 0 or over 1 → `missing`
+3. mouth is under 30 m → `pinch`
+4. floor void fraction is over 0.15 → `voids`
+5. a supplied drop is over 30 m → `drop`
+6. floor slope is over 20 degrees → `slope`
+7. otherwise → `ok`
 
-A missing drop is not a required input and is not a fail by itself. Equal to a limit does not trip that gate: mouth 30 m, void fraction 0.15, drop 30 m, and slope 20 degrees continue, so `hold(30, 0.15, 30, 20)` is `ok`. `hold(88, 0.02, None, 5)` is `ok`.
+A missing drop is not a required input and is not a fail by itself. A negative drop is missing. A negative measure, or a void fraction outside 0 to 1, is missing. Equal to a limit does not trip that gate: mouth 30 m, void fraction 0.15, drop 30 m, and slope 20 degrees continue, so `hold(30, 0.15, 30, 20)` is `ok`. `hold(88, 0.02, None, 5)` is `ok`.
 
 ## Worked rows
 

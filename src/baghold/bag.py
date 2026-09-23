@@ -23,10 +23,21 @@ def hold(
 ) -> str:
     """Missing mouth, void fraction, or floor slope is not a pass.
 
-    Order: missing required input, then pinch, voids, drop, slope, else ok.
+    Order: missing required input, a negative measure or a void fraction
+    outside 0 to 1, then pinch, voids, drop, slope, else ok.
     A missing drop is not required and is not a fail by itself.
+    A negative drop is missing.
     """
     if mouth_m is None or floor_void_fraction is None or floor_slope_deg is None:
+        return "missing"
+    if (
+        mouth_m < 0
+        or floor_void_fraction < 0
+        or floor_void_fraction > 1
+        or floor_slope_deg < 0
+    ):
+        return "missing"
+    if drop_m is not None and drop_m < 0:
         return "missing"
     if mouth_m < 30:
         return "pinch"
