@@ -1,9 +1,10 @@
 # BAGHOLD
 
-BAGHOLD scores a pit as a hold. A collapsed skylight is not a cave you can use.
+For a scout who thinks a lunar pit is a cave they can use.
 
 **Owner:** Digital Currensy Inc.
-**License:** Apache-2.0. Our code only. Cited maps stay with their authors.
+**License:** Apache-2.0. Our code only. Cited data and papers stay with their authors.
+**Status:** Private until the owner publishes it.
 
 ## What it decides
 
@@ -11,11 +12,11 @@ Hold, or not a hold. The mouth is the gate.
 
 ## The rule
 
-A pit with voids at the mouth is not a hold. A pinch, a drop, or a slope past the limit fails. A missing depth, equal sites, an undeclared identity, or missing inputs fail closed. Passing the mouth does not make the pit a habitat.
+A pit with voids at the mouth is not a hold. A pinch, a drop, or a slope past the limit fails. A missing depth or a missing identity fails closed. Passing the mouth does not make the pit a habitat.
 
 ## Worked cases
 
-Mare Tranquillitatis, Marius Hills, and synthetic pits in this repository. The synthetic cases each force one gate: walk-in, pinch, void, drop, slope, pinch first, a null drop, equal sites, an undeclared identity, or missing inputs. They are the desk’s cases, not a site a customer surveyed.
+Mare Tranquillitatis and Marius Hills are named. The synthetic pits each force one gate. They are not a site a customer surveyed.
 
 ## What it will not do
 
@@ -26,7 +27,9 @@ Mare Tranquillitatis, Marius Hills, and synthetic pits in this repository. The s
 ## Run
 
 ```
+git clone <this repo>
+cd baghold
 PYTHONPATH=src python -m unittest tests.test_kernel
 ```
 
-Notes under `docs/` are the build record. This page is the description.
+Python 3.12. No third-party packages. The test is the demo.
