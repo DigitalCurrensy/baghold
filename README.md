@@ -1,48 +1,32 @@
 # BAGHOLD
 
-The bag is the goal. A lunar pit looks like a cave you can enter. Score the hold.
+BAGHOLD scores a pit as a hold. A collapsed skylight is not a cave you can use.
 
 **Owner:** Digital Currensy Inc.
-**Status:** Private. Independent tool. Not a NASA Space Apps 2026 submission.
-**License of our code:** Apache-2.0
+**License:** Apache-2.0. Our code only. Cited maps stay with their authors.
 
-## One sentence
+## What it decides
 
-A lunar pit looks like a cave you can enter. Score the hold against mouth pinch, floor void, drop, and floor slope — or say the bag is not a hold.
+Hold, or not a hold. The mouth is the gate.
 
-## Wave freeze
+## The rule
 
-- W0 catalog: Mare Tranquillitatis pit (Wagner 2022) and Marius Hills pit (Haruyama 2009 / Wagner 2022). bag.py named, not run.
-- W1 hold scorer: bag.py ported. Pinch first. MTP fails voids. MHP fails drop.
-- W2 one bad bag: MTP walked. Pretty-print is not a hold. Haruyama 1276 m and Carrer 15 m named, not scored.
-- W3 hold letter: fail still issues. void = n_invalid / n_cells. MTP 40/100. MHP is not this letter.
-- W4 counsel pass: unsigned. Named seats are not wet ink. A tube is not this mouth. TUBEWALK locked.
+A pit with voids at the mouth is not a hold. A pinch, a drop, or a slope past the limit fails. A missing depth, equal sites, an undeclared identity, or missing inputs fail closed. Passing the mouth does not make the pit a habitat.
 
-BAGHOLD W0–W4 frozen. Do not staff TUBEWALK.
+## Worked cases
 
-## bag.py
+Mare Tranquillitatis, Marius Hills, and synthetic pits in this repository. The synthetic cases each force one gate: walk-in, pinch, void, drop, slope, pinch first, a null drop, equal sites, an undeclared identity, or missing inputs. They are the desk’s cases, not a site a customer surveyed.
 
-```
-if mouth_m < 30: pinch
-elif floor_void_fraction > 0.15: voids
-elif drop_m is not None and drop_m > 30: drop
-elif floor_slope_deg > 20: slope
-else: ok
-```
+## What it will not do
 
-Pinch first. Equality sits. DEM unfetched.
-
-## What it is not
-
-- Not FEASFRONT lighting. A dark pit is not a hold.
-- Not DOSEPATH occupancy. The shelter bag is a graph box, not this mouth.
-- Not PINFAULT pin score. West crater is not this hold.
-- Not RIMKEEP. A bag is a goal you enter. A rim keep is a box you do not.
-- Not Mare Ingenii or Lacus Mortis as this catalog.
-- Not TUBEWALK.
+- Pretty-print a skylight as a cave.
+- Fetch an elevation model in order to print the score.
+- Call a scored mouth a shelter.
 
 ## Run
 
 ```
 PYTHONPATH=src python -m unittest tests.test_kernel
 ```
+
+Notes under `docs/` are the build record. This page is the description.
