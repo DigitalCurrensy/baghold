@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import csv
+import math
 import sys
 from pathlib import Path
 
@@ -34,6 +35,15 @@ def _parse_float(value: str | None) -> float | None:
     return float(text)
 
 
+
+def _show(value: float | None) -> str:
+    if value is None:
+        return "missing"
+    if not math.isfinite(value):
+        return "bad"
+    return f"{value:.10g}"
+
+
 def score_csv(path: Path) -> list[str]:
     with path.open(newline="") as handle:
         reader = csv.DictReader(handle)
@@ -43,13 +53,13 @@ def score_csv(path: Path) -> list[str]:
             )
         verdicts: list[str] = []
         for row in reader:
+            mouth = _parse_float(row["mouth_m"])
+            voids = _parse_float(row["floor_void_fraction"])
+            drop = _parse_float(row["drop_m"])
+            slope = _parse_float(row["floor_slope_deg"])
+            word = hold(mouth, voids, drop, slope)
             verdicts.append(
-                hold(
-                    _parse_float(row["mouth_m"]),
-                    _parse_float(row["floor_void_fraction"]),
-                    _parse_float(row["drop_m"]),
-                    _parse_float(row["floor_slope_deg"]),
-                )
+                f"{word} mouth={_show(mouth)} void={_show(voids)} drop={_show(drop)} slope={_show(slope)}"
             )
     return verdicts
 

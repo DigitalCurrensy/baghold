@@ -22,7 +22,7 @@ A pit-mouth score from the numbers the caller supplies. Passing the mouth does n
 6. floor slope is over 20 degrees → `slope`
 7. otherwise → `ok`
 
-A missing drop is not a required input and is not a fail by itself. A non-finite number is missing. A negative drop is missing. A negative measure, or a void fraction outside 0 to 1, is missing. Equal to a limit does not trip that gate: mouth 30 m, void fraction 0.15, drop 30 m, and slope 20 degrees continue, so `hold(30, 0.15, 30, 20)` is `ok`. `hold(88, 0.02, None, 5)` is `ok`.
+A missing drop is not a required input and is not a fail by itself. The line prints mouth, void fraction, drop, and floor slope next to the word. A non-finite number is missing. A negative drop is missing. A negative measure, or a void fraction outside 0 to 1, is missing. Equal to a limit does not trip that gate: mouth 30 m, void fraction 0.15, drop 30 m, and slope 20 degrees continue, so `hold(30, 0.15, 30, 20)` is `ok`. `hold(88, 0.02, None, 5)` is `ok`.
 
 ## Worked rows
 
