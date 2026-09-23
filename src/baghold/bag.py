@@ -15,6 +15,13 @@
 """Score a pit mouth from the numbers the caller supplies. This does not survey a cave."""
 
 
+import math
+
+
+def _bad(value: float | None) -> bool:
+    return value is not None and not math.isfinite(value)
+
+
 def hold(
     mouth_m: float | None,
     floor_void_fraction: float | None,
@@ -29,6 +36,8 @@ def hold(
     A negative drop is missing.
     """
     if mouth_m is None or floor_void_fraction is None or floor_slope_deg is None:
+        return "missing"
+    if _bad(mouth_m) or _bad(floor_void_fraction) or _bad(drop_m) or _bad(floor_slope_deg):
         return "missing"
     if (
         mouth_m < 0

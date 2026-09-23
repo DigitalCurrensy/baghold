@@ -144,5 +144,11 @@ class CounselTests(unittest.TestCase):
         self.assertIsNone(void_edge(2.5, 100))
 
 
+
+class FinitePitTests(unittest.TestCase):
+    def test_non_finite_is_missing(self) -> None:
+        self.assertEqual(hold(40.0, float("nan"), None, 5.0), "missing")
+
+
 if __name__ == "__main__":
     unittest.main()
