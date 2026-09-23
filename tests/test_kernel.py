@@ -26,7 +26,7 @@ class HoldTests(unittest.TestCase):
         self.assertEqual(hold(30, 0.15, 30, 20), "ok")
         self.assertEqual(hold(88, 0.02, None, 5), "ok")
 
-    def test_catalog_named_not_scored_as_wave0_verdict(self) -> None:
+    def test_named_catalog_is_not_a_fetched_survey(self) -> None:
         self.assertEqual(MTP["id"], "BAG-MTP-TRANQ")
         self.assertEqual(MTP["lat"], 8.336)
         self.assertEqual(MTP["lon"], 33.222)

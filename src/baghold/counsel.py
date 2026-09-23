@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 TITLE = "BAG HOLD COUNSEL PASS"
-OFFER = "pit hold letter $5k–$12k. Not an invoice."
+OFFER = "Unsigned. Not an invoice."
 COUNSEL = "unsigned"
 WORD_CAP = 80
 VOID_FORMULA = "n_invalid / n_cells"
@@ -97,7 +97,7 @@ def compile_counsel(kind: str) -> dict:
     body = (
         "BAG HOLD COUNSEL PASS. Research tool. Not a certificate. Not survey-grade. "
         "Mare Tranquillitatis pit still VOIDS. Floor 40 of 100 cells invalid. Counsel unsigned. "
-        "Engineer of record unsigned. Offer $5k–$12k. TUBEWALK locked."
+        "Engineer of record unsigned."
     )
     return {
         "title": TITLE,

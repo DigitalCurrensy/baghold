@@ -4,8 +4,6 @@ For a scout who thinks a lunar pit is a cave they can use.
 
 **Owner:** Digital Currensy Inc.
 **License:** Apache-2.0. Our code only. Cited data and papers stay with their authors.
-**Status:** Private until the owner publishes it.
-
 ## What it decides
 
 Hold, or not a hold. The mouth is the gate.

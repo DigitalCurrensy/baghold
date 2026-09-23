@@ -7,7 +7,7 @@ from .bags import MHP, MTP
 from .walk import MTP_WALK
 
 TITLE = "HOLD LETTER"
-OFFER = "pit hold letter $5k–$12k. Not an invoice."
+OFFER = "Unsigned. Not an invoice."
 COUNSEL = "unsigned"
 WORD_CAP = 80
 VOID_FORMULA = "n_invalid / n_cells"
