@@ -23,6 +23,33 @@ PYTHONPATH=src python -m baghold examples/ends.csv
 
 The rest of this file is the rule that command prints.
 
+## Record
+
+`--json` prints one object. The process exit code is that object's `exit`. 0 is a pass word (`ok`, `pass`, `scored`, `path`). 1 is a refusal. 2 means the file could not be read. `keep` is false. `absent` is what this output does not contain: a stamp, measured basin months, and the points inside a `.laz` file.
+
+This object is not WaterML and it is not a USGS response.
+
+```json
+{
+  "absent": [
+    "stamp",
+    "measured_months",
+    "laz_points"
+  ],
+  "desk": "baghold",
+  "exit": 0,
+  "formula": "A skylight is not a shelter.",
+  "keep": false,
+  "rows": [
+    {
+      "line": "ok mouth=40 void=0.02 drop=10 slope=14.03624347",
+      "word": "ok"
+    }
+  ],
+  "word": "ok"
+}
+```
+
 
 This does not survey a cave. A collapsed skylight is not a shelter. `examples/ends.csv` computes the mouth, the drop, and the floor grade from two points, and the void fraction from a count. Ok is not a shelter.
 

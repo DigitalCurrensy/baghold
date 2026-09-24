@@ -12,3 +12,6 @@ authors = [{ name = "Digital Currensy Inc." }]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.scripts]
+baghold = "baghold.__main__:main"

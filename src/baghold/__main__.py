@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 from .bag import from_ends, hold
+from .record import finish
 from .letter import void_fraction_of
 
 HEADER = ("mouth_m", "floor_void_fraction", "drop_m", "floor_slope_deg")
@@ -85,16 +86,18 @@ def score_csv(path: Path) -> list[str]:
 
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
+    as_json = "--json" in args
+    args = [item for item in args if item != "--json"]
     if len(args) != 1:
-        print("usage: python -m baghold examples/pit.csv", file=sys.stderr)
+        print("usage: python -m baghold examples/pit.csv [--json]", file=sys.stderr)
         return 2
     try:
-        for verdict in score_csv(Path(args[0])):
-            print(verdict)
+        lines = score_csv(Path(args[0]))
     except (OSError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
         return 2
-    return 0
+    words = [line.split()[0] for line in lines]
+    return finish("baghold", "A skylight is not a shelter.", lines, as_json, words)
 
 
 if __name__ == "__main__":
