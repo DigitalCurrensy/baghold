@@ -21,9 +21,11 @@ import math
 import sys
 from pathlib import Path
 
-from .bag import hold
+from .bag import from_ends, hold
+from .letter import void_fraction_of
 
 HEADER = ("mouth_m", "floor_void_fraction", "drop_m", "floor_slope_deg")
+ENDS_HEADER = ("x1", "y1", "z1", "x2", "y2", "z2", "n_invalid", "n_cells")
 
 
 def _parse_float(value: str | None) -> float | None:
@@ -47,7 +49,24 @@ def _show(value: float | None) -> str:
 def score_csv(path: Path) -> list[str]:
     with path.open(newline="") as handle:
         reader = csv.DictReader(handle)
-        if tuple(reader.fieldnames or ()) != HEADER:
+        names = tuple(reader.fieldnames or ())
+        if names == ENDS_HEADER:
+            verdicts = []
+            for row in reader:
+                ends = [_parse_float(row[name]) for name in ("x1", "y1", "z1", "x2", "y2", "z2")]
+                n_invalid = _parse_float(row["n_invalid"])
+                n_cells = _parse_float(row["n_cells"])
+                if None in ends or n_invalid is None or n_cells is None:
+                    mouth = drop = slope = voids = None
+                else:
+                    mouth, drop, slope = from_ends(*ends)
+                    voids = void_fraction_of(n_invalid, n_cells)
+                word = hold(mouth, voids, drop, slope)
+                verdicts.append(
+                    f"{word} mouth={_show(mouth)} void={_show(voids)} drop={_show(drop)} slope={_show(slope)}"
+                )
+            return verdicts
+        if names != HEADER:
             raise ValueError(
                 "header must be mouth_m,floor_void_fraction,drop_m,floor_slope_deg"
             )

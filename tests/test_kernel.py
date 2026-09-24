@@ -163,6 +163,17 @@ class PrintedLineTests(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertEqual(proc.stdout.splitlines()[0], "ok mouth=100 void=0 drop=0 slope=0")
 
+    def test_two_ends_compute_mouth_drop_and_grade(self) -> None:
+        import subprocess
+        repo = Path(__file__).resolve().parents[1]
+        proc = subprocess.run(
+            [sys.executable, "-m", "baghold", str(repo / "examples" / "ends.csv")],
+            cwd=repo, env={**__import__("os").environ, "PYTHONPATH": str(repo / "src")},
+            capture_output=True, text=True, check=False,
+        )
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual(proc.stdout.strip(), "ok mouth=40 void=0.02 drop=10 slope=14.03624347")
+
 
 if __name__ == "__main__":
     unittest.main()

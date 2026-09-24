@@ -1,6 +1,6 @@
 # BAGHOLD
 
-This does not survey a cave. A collapsed skylight is not a shelter. The caller supplies the mouth measurements.
+This does not survey a cave. A collapsed skylight is not a shelter. `examples/ends.csv` computes the mouth, the drop, and the floor grade from two points, and the void fraction from a count. Ok is not a shelter.
 
 **Owner:** Digital Currensy Inc.
 **Copyright:** 2026 Digital Currensy Inc.

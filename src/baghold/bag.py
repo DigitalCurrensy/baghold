@@ -58,3 +58,17 @@ def hold(
         return "slope"
     return "ok"
 
+
+def from_ends(
+    x1: float, y1: float, z1: float, x2: float, y2: float, z2: float
+) -> tuple[float, float, float | None]:
+    """Plan mouth, drop, and grade from two rim points. Drop is z1 minus z2."""
+    for value in (x1, y1, z1, x2, y2, z2):
+        if not math.isfinite(value):
+            raise ValueError("bad number")
+    mouth = math.hypot(x2 - x1, y2 - y1)
+    drop = z1 - z2
+    if mouth <= 0:
+        return mouth, drop, None
+    return mouth, drop, math.degrees(math.atan(drop / mouth))
+
