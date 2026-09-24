@@ -1,5 +1,29 @@
 # BAGHOLD
 
+[![check](https://github.com/DigitalCurrensy/baghold/actions/workflows/check.yml/badge.svg)](https://github.com/DigitalCurrensy/baghold/actions/workflows/check.yml)
+
+For a pit or skylight check when you have the two ends.
+
+Mouth, drop, grade, and void fraction are computed from those ends. A skylight is not a shelter.
+
+Ok is not a decision to enter.
+
+## Install
+
+```bash
+pip install -e .
+PYTHONPATH=src python -m unittest tests.test_kernel
+```
+
+## First command
+
+```bash
+PYTHONPATH=src python -m baghold examples/ends.csv
+```
+
+The rest of this file is the rule that command prints.
+
+
 This does not survey a cave. A collapsed skylight is not a shelter. `examples/ends.csv` computes the mouth, the drop, and the floor grade from two points, and the void fraction from a count. Ok is not a shelter.
 
 **Owner:** Digital Currensy Inc.
